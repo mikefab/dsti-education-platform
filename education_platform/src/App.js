@@ -15,6 +15,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
+import MenuIcon from '@material-ui/icons/Menu';
 import Footer from './Footer';
 
 const styles = theme => ({
@@ -57,6 +58,9 @@ const styles = theme => ({
     fontSize: '12px',
     lineHeight: '1.5',
     padding: '3px',
+  },
+  menuIcon: {
+    marginLeft: '20px',
   },
 });
 
@@ -116,6 +120,7 @@ function App(props) {
           <Button variant="outlined" size="small">
             Log In
           </Button>
+          <MenuIcon className={classes.menuIcon}/>
         </Toolbar>
         <main>
           {/* Sub featured posts */}
