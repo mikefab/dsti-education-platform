@@ -1,5 +1,16 @@
 import React from 'react';
 
+const styles = (theme) => ({
+  footer: {
+    position: 'absolute',
+    bottom: '0',
+    backgroundColor: '#424242',
+    color: '#efefef',
+    textAlign: 'center',
+    fontSize: '12px',
+    lineHeight: '1.5',
+  }
+}) 
 const Footer = (props) => (
   <div className="Footer">
     <h4>Get in touch</h4>
