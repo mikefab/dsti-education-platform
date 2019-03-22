@@ -1,13 +1,40 @@
 .App {
   text-align: left;
+  background-color: #efefef;
+  color: #424242;
+  height: 100vh;
+  padding: 30px;
+  width: 100vw;
 }
 
 .App-header {
-  background-color: #efefef;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: 20px;
+}
+
+.body {
+  position: relative;
+}
+
+.Section-title {
   color: #424242;
-  padding: 40px;
+}
+
+.Footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  width: 100%;
+  background-color: #424242;
+  color: #efefef;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+a {
+  color: #a5a5a5;
 }
