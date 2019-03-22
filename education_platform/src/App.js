@@ -143,9 +143,9 @@ function App(props) {
                       <Typography variant="subtitle1" paragraph>
                         {card.description}
                       </Typography>
-                      <Typography variant="subtitle1" color="primary">
+                      <Button variant="subtitle1" color="primary">
                         Visit
-                      </Typography>
+                      </Button>
                     </CardContent>
                   </div>
                 </Card>
