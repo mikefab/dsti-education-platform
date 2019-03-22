@@ -1,4 +1,7 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { SocialIcon } from 'react-social-icons';
 
 const styles = (theme) => ({
   footer: {
@@ -9,9 +12,18 @@ const styles = (theme) => ({
     textAlign: 'center',
     fontSize: '12px',
     lineHeight: '1.5',
+  },
+  icon: {
+    fgColor: '#8e8e8e',
+    height: '15px',
+    width: '15px',
+    margin: '5px',
   }
 })
-const Footer = (props) => (
+
+const SocialMediaLinks = ["https://twitter.com/dstisierraleone", "https://www.instagram.com/dsti_sl/", "https://www.facebook.com/DSTISierraLeone/"]
+
+const Footer = ({ classes }) => (
   <div className="Footer">
     <h4>Get in touch</h4>
     <p>
@@ -20,6 +32,14 @@ const Footer = (props) => (
       Email: <a href="mailto:info@dsti.gov.sl?subject=Education%20Platform%20Inquiry" style={{ color:'#8e8e8e' }}>info@dsti.gov.sl</a><br></br>
       © {(new Date()).getFullYear()} Directorate of Science, Technology, and Innovation
     </p>
+    { SocialMediaLinks.map(link => (
+      <SocialIcon url={link} style={{ height: '20px', width: '20px', margin: '5px', marginBottom: '10px' }}/>
+    ))}
   </div>
 )
-export default Footer;
+
+Footer.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Footer);
