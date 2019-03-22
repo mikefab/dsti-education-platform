@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = (props) => (
-  <div className="App-header">
+  <div className="Header">
     <h2>
       Education Platform
     </h2>

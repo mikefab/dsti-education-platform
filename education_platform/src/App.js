@@ -7,9 +7,11 @@ import Footer from './Footer';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Section className="body"/>
+      <div>
+        <div className="body">
+          <Header />
+          <Section />
+        </div>
         <Footer />
       </div>
     );
