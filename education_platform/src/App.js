@@ -95,6 +95,12 @@ const cards = [
     description:
       'This is a demo card',
   },
+  {
+    title: 'Add',
+    description:
+      'Click here to add a card',
+    img: '/add_icon.png',
+  },
 ];
 
 const social = ['GitHub', 'Twitter', 'Facebook'];
@@ -129,11 +135,19 @@ function App(props) {
               <Grid item key={card.title} xs={12} md={6}>
                 <Card className={classes.card}>
                   <Hidden xsDown>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image="/charts.png"
-                      title="Image title"
-                    />
+                    { card.title === 'Add' ?
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image="/add_icon.png"
+                        title={card.title}
+                      />
+                      :
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image="/charts.png"
+                        title="Image title"
+                      />
+                    }
                   </Hidden>
                   <div className={classes.cardDetails}>
                     <CardContent>
