@@ -8,48 +8,53 @@ import SearchIcon from '@material-ui/icons/Search';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import InfoIcon from '@material-ui/icons/Info';
+
+// import Card from '@material-ui/core/Card';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Markdown from './Markdown';
+// import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Footer from './Footer';
 
+
 const styles = theme => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    marginBottom: theme.spacing.unit * 3,
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: '#fcfcfc',
+    color: '#ffffff'
+  },
+  gridList: {
+    width: 1100,
+    height: 650,
+  },
+  gridListTile: {
+    margin: '25px',
+    backgroundColor: '#38568c',
+    maxWidth: '315px',
   },
   toolbarTitle: {
-    flex: 1,
-    textAlign: 'left',
-    padding: '30px',
+     flex: 1,
+     textAlign: 'left',
+     padding: '30px',
+   },
+   toolbarMain: {
+     backgroundColor: '#fcfcfc',
+   },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
   },
-  mainGrid: {
-    marginTop: theme.spacing.unit * 3,
-  },
-  card: {
-    display: 'flex',
-    height: 250,
-  },
-  cardDetails: {
-    flex: 1,
-  },
-  cardMedia: {
-    width: 250,
-  },
-  markdown: {
-    padding: `${theme.spacing.unit * 3}px 0`,
+  menuIcon: {
+    marginLeft: '20px',
   },
   footer: {
     backgroundColor: '#424242',
@@ -59,44 +64,58 @@ const styles = theme => ({
     lineHeight: '1.5',
     padding: '3px',
   },
-  menuIcon: {
-    marginLeft: '20px',
+  Subheader: {
+    fontSize: '20px',
+    fontColor: '#424242',
   },
 });
 
-const cards = [
+const tileData = [
   {
     title: 'Card 1',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Card 2',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Card 3',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Card 4',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Card 5',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Card 6',
     description:
       'This is a demo card',
+    permissions: ['update', 'delete'],
+    action: 'VISIT',
   },
   {
     title: 'Add',
+    permissions: [],
     description:
       'Click here to add a card',
     img: '/add_icon.png',
@@ -130,42 +149,32 @@ function App(props) {
         </Toolbar>
         <main>
           {/* Sub featured posts */}
-          <Grid container spacing={40} className={classes.cardGrid}>
-            {cards.map(card => (
-              <Grid item key={card.title} xs={12} md={6}>
-                <Card className={classes.card}>
-                  <Hidden xsDown>
-                    { card.title === 'Add' ?
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image="/add_icon.png"
-                        title={card.title}
-                      />
-                      :
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image="/charts.png"
-                        title="Image title"
-                      />
+          <div className={classes.root}>
+            <GridList cellHeight={300} className={classes.gridList} cols={3}>
+              <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
+                <ListSubheader component="div" className={classes.Subheader}>Education News and Information</ListSubheader>
+              </GridListTile>
+              {tileData.map(tile => (
+                <GridListTile key={tile.img} className={classes.gridListTile}>
+                  { tile.title === "Add" ?
+                    <img src={'./add_icon.png'} alt={tile.title} />
+                    :
+                    <img src={'./chart_icon.png'} alt={tile.title} />
+                  }
+                  <GridListTileBar
+                    title={tile.title}
+                    subtitle={<span>{tile.description}</span>}
+                    actionIcon={
+                      <IconButton className={classes.icon}>
+                        {tile.action}
+                      </IconButton>
                     }
-                  </Hidden>
-                  <div className={classes.cardDetails}>
-                    <CardContent>
-                      <Typography component="h2" variant="h5">
-                        {card.title}
-                      </Typography>
-                      <Typography variant="subtitle1" paragraph>
-                        {card.description}
-                      </Typography>
-                      <Button variant="subtitle1" color="primary">
-                        Visit
-                      </Button>
-                    </CardContent>
-                  </div>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+                    className={classes.tileBar}
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
+          </div>
           {/* End sub featured posts */}
         </main>
       </div>
