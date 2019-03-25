@@ -1,0 +1,26 @@
+{
+  "title": "Education News and Information",
+  "tiles": [
+    {
+      "title": "Card 1",
+      "description": " This is a demo card'",
+      "permissions": ["update", "delete"],
+      "img": "/chart_icon.png",
+      "action": "VISIT"
+    },
+    {
+      "title": "Card 1",
+      "description": " This is a demo card'",
+      "permissions": ["update", "delete"],
+      "img": "/chart_icon.png",
+      "action": "VISIT"
+    },
+    {
+      "title": "Add",
+      "permissions": [],
+      "description": "Click here to add a card",
+      "img": "/add_icon.png",
+      "action": ""
+    }
+  ]
+}
