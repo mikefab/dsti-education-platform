@@ -51,19 +51,20 @@ class SectionForm extends React.Component {
     }
   }
 
-  // writeData = (newData) => {
-  //   let currentDataset = this.props.currentDataset
-  //   if (currentDataset.section === newData.section) {
-  //     let newTile = {}
-  //     newTile.title = newData.title
-  //     newTile.description = newData.description
-  //     newTile.permissions = newData.permissions
-  //     newTile.link = newData.link
-  //     newTile.resourceType = newData.resourceType
-  //     currentDataset.tiles.push(newTile)
-  //     console.log(currentDataset)
-  //   }
-  // };
+  writeData = (newData) => {
+    console.log("writing data", newData)
+    // let currentDataset = this.props.currentDataset
+    // if (currentDataset.section === newData.section) {
+    //   let newTile = {}
+    //   newTile.title = newData.title
+    //   newTile.description = newData.description
+    //   newTile.permissions = newData.permissions
+    //   newTile.link = newData.link
+    //   newTile.resourceType = newData.resourceType
+    //   currentDataset.tiles.push(newTile)
+    //   console.log(currentDataset)
+    // }
+  };
 
   handleChange = event => {
     console.log(event.target.name, event.target.value)
@@ -77,17 +78,17 @@ class SectionForm extends React.Component {
 
   handleSubmit = event =>  {
     event.preventDefault();
-    console.log(this.state)
-    // let incompleteFields = 0
-    // Object.values(this.state).map(value => (
-    //   !value ? incompleteFields += 1 : null
-    // ));
-    // if (incompleteFields > 0 ) {
-    //   alert("All fields are required. Please complete the form.")
-    // }
-    // incompleteFields = 0;
-    // this.props.close();
-    // this.writeData(this.state);
+    let incompleteFields = 0
+    Object.values(this.state).map(value => {
+      if (!value) {
+        incompleteFields += 1
+      }});
+    if (incompleteFields > 0 ) {
+      alert("All fields are required. Please complete the form.")
+    } else {
+      this.props.close();
+      this.writeData(this.state);
+    }
   }
 
    render() {
@@ -101,12 +102,14 @@ class SectionForm extends React.Component {
               required
               className={classes.formField}
               id="title-input"
-              label="Title (Name of App/Site)"
+              label="Section Title"
               name="title"
               margin="normal"
               value={this.state.title.value}
               onChange={this.handleChange}
+              helperText="This will display on the page as the section header"
             />
+            <FormLabel className={classes.label}>Select a background color for the tile: </FormLabel>
             <Select
               value={this.state.color}
               onChange={this.handleChange}
@@ -114,7 +117,6 @@ class SectionForm extends React.Component {
               name="color"
               className={classes.formField}
             >
-              <option value="section" disabled>Select a background color</option>
               <option name="section" value="#B0CDA7" style={{ backgroundColor: '#B0CDA7', color: '#ffffff' }}>Green</option>
               <option name="section" value="#7F909A" style={{ backgroundColor: '#7F909A', color: '#ffffff' }}>Blue</option>
               <option name="section" value="#CB9981" style={{ backgroundColor: '#CB9981', color: '#ffffff' }}>Red</option>
@@ -123,9 +125,9 @@ class SectionForm extends React.Component {
               required
               className={classes.formField}
               id="section-input"
-              label="Application Description"
-              name="description"
-              helperText="Create a one-word reference code for this section"
+              label="Section Code"
+              name="section"
+              helperText="Create a one-word reference code for this section (i.e. news)"
               margin="normal"
               value={this.state.section.value}
               onChange={this.handleChange}

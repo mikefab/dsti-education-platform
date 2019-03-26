@@ -1,6 +1,8 @@
 {
   "title": "Education News and Information",
   "section": "news",
+  "color": "#B0CDA7",
+  "permissions": "can-edit",
   "tiles": [
     {
       "title": "Add",
