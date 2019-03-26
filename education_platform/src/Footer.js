@@ -33,7 +33,7 @@ const Footer = ({ classes }) => (
       © {(new Date()).getFullYear()} Directorate of Science, Technology, and Innovation
     </p>
     { SocialMediaLinks.map(link => (
-      <SocialIcon url={link} style={{ height: '20px', width: '20px', margin: '5px', marginBottom: '10px' }}/>
+      <SocialIcon key={link} url={link} style={{ height: '20px', width: '20px', margin: '5px', marginBottom: '10px' }}/>
     ))}
   </div>
 )

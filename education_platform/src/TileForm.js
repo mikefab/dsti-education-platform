@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
@@ -7,7 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
@@ -173,5 +172,10 @@ class TileForm extends React.Component {
       );
   }
 }
+
+TileForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(TileForm);

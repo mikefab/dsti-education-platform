@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -11,14 +10,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import TileForm from './TileForm';
 import SectionForm from './SectionForm';
 import Modal from '@material-ui/core/Modal';
-
-// import Card from '@material-ui/core/Card';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import Hidden from '@material-ui/core/Hidden';
-import Button from '@material-ui/core/Button';
-// import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -64,6 +55,7 @@ const styles = theme => ({
   },
   modal:{
     textAlign:'center',
+    outline: 'none',
   },
 });
 
@@ -117,8 +109,8 @@ class App extends React.Component {
                 <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
                   <ListSubheader component="div" className={classes.Subheader}>Education News and Information</ListSubheader>
                 </GridListTile>
-                {data.tiles && data.tiles.map(tile => (
-                  <GridListTile key={tile.img} className={classes.gridListTile}>
+                {data.tiles && data.tiles.map((tile, index) => (
+                  <GridListTile key={index} className={classes.gridListTile}>
                     { tile.title === "Add" ?
                       <img src={'./add_icon.png'} alt={tile.title} onClick={this.handleTileModalOpen}/>
                       :

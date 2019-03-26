@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
@@ -7,9 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
@@ -79,7 +76,7 @@ class SectionForm extends React.Component {
   handleSubmit = event =>  {
     event.preventDefault();
     let incompleteFields = 0
-    Object.values(this.state).map(value => {
+    Object.values(this.state).forEach(value => {
       if (!value) {
         incompleteFields += 1
       }});
@@ -97,7 +94,7 @@ class SectionForm extends React.Component {
         <form className={classes.root} onSubmit={this.handleSubmit}>
         {console.log(this.state)}
           <FormControl className={classes.formControl}>
-          <h2>Add a resource</h2>
+          <h2>Add a section</h2>
             <TextField
               required
               className={classes.formField}
@@ -151,5 +148,10 @@ class SectionForm extends React.Component {
       );
   }
 }
+
+SectionForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(SectionForm);
