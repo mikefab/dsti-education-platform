@@ -4,15 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import InfoIcon from '@material-ui/icons/Info';
+import TileForm from './TileForm';
 
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
@@ -122,8 +119,6 @@ const tileData = [
   },
 ];
 
-const social = ['GitHub', 'Twitter', 'Facebook'];
-
 function App(props) {
   const { classes } = props;
 
@@ -178,6 +173,7 @@ function App(props) {
           {/* End sub featured posts */}
         </main>
       </div>
+      <TileForm />
       {/* Footer */}
       <footer className={classes.footer}>
         <Footer />
