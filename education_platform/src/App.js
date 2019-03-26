@@ -3,10 +3,20 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import TileForm from './TileForm';
+
+// import Card from '@material-ui/core/Card';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Hidden from '@material-ui/core/Hidden';
+import Button from '@material-ui/core/Button';
+// import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -52,16 +62,8 @@ const styles = theme => ({
   },
 });
 
-const social = ['GitHub', 'Twitter', 'Facebook'];
-const data = fetch('/data.json');
-
-class App extends React.Component {
-  constructor(props) {
-   super(props);
-   this.state = {
-     data: {},
-   };
- }
+function App(props) {
+  const { classes } = props;
 
   componentWillMount() {
     fetch('/data.json')
@@ -113,19 +115,20 @@ class App extends React.Component {
                     <hr></hr>
                   </span>
                 </GridListTile>
-              </GridList>
-            </div>
-            {/* End sub featured posts */}
-          </main>
-        </div>
-        {/* Footer */}
-        <footer className={classes.footer}>
-          <Footer />
-        </footer>
-        {/* End footer */}
-      </React.Fragment>
-    );
-  }
+              ))}
+            </GridList>
+          </div>
+          {/* End sub featured posts */}
+        </main>
+      </div>
+      <TileForm />
+      {/* Footer */}
+      <footer className={classes.footer}>
+        <Footer />
+      </footer>
+      {/* End footer */}
+    </React.Fragment>
+  );
 }
 
 App.propTypes = {
