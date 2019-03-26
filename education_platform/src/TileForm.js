@@ -29,6 +29,10 @@ const styles = theme => ({
   },
   label: {
     marginTop: '40px',
+  },
+  text: {
+    fontSize: '12px',
+    fontColor: '#f0f0f0'
   }
 });
 
@@ -126,6 +130,17 @@ class TileForm extends React.Component {
             >
               <FormControlLabel name="resourceType" value="internal" control={<Radio />} label="Internal (DSTI) Application" />
               <FormControlLabel name="resourceType" value="external" control={<Radio />} label="External Resource" />
+            </RadioGroup>
+            <FormLabel className={classes.label}>Permissions: Can a logged-in DSTI Admin change this resource?</FormLabel>
+            <RadioGroup
+              aria-label="Permissions"
+              name="permissions"
+              className={classes.group}
+              value={this.state.resourceType.value}
+              onChange={this.handleChange}
+            >
+              <FormControlLabel name="permissions" value="can-edit" control={<Radio />} label="Can be edited/deleted" />
+              <FormControlLabel name="permissions" value="cannot-edit" control={<Radio />} label="Cannot be edited/deleted" />
             </RadioGroup>
           </FormControl>
         </div>

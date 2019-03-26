@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import TileForm from './TileForm';
+import Modal from '@material-ui/core/Modal';
 
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
@@ -28,7 +29,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: '#fcfcfc',
-    color: '#ffffff'
+    color: '#ffffff',
   },
   gridList: {
     width: 1100,
@@ -67,6 +68,7 @@ class App extends React.Component {
    super(props);
    this.state = {
      data: {},
+     tileModalOpen: false,
    };
  }
 
@@ -75,6 +77,15 @@ class App extends React.Component {
     .then(res => res.json())
     .then(json => this.setState({ data: json }))
   }
+
+  handleTileModalOpen = () => {
+    this.setState({ tileModalOpen: true });
+  };
+
+  handleTileModalClose = () => {
+    this.setState({ tileModalOpen: false });
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -96,7 +107,7 @@ class App extends React.Component {
                 {data.tiles && data.tiles.map(tile => (
                   <GridListTile key={tile.img} className={classes.gridListTile}>
                     { tile.title === "Add" ?
-                      <img src={'./add_icon.png'} alt={tile.title} />
+                      <img src={'./add_icon.png'} alt={tile.title} onClick={this.handleTileModalOpen}/>
                       :
                       <img src={'./chart_icon.png'} alt={tile.title} />
                     }
@@ -125,7 +136,15 @@ class App extends React.Component {
           {/* End sub featured posts */}
         </main>
       </div>
-      <TileForm />
+      <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.tileModalOpen}
+          onClose={this.handleTileModalClose}
+          className={classes.modal}
+        >
+        <TileForm close={this.handleTileModalClose}/>
+      </Modal>
       {/* Footer */}
       <footer className={classes.footer}>
         <Footer />
