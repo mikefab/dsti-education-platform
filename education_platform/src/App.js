@@ -146,7 +146,7 @@ class App extends React.Component {
           onClose={this.handleTileModalClose}
           className={classes.modal}
         >
-        <TileForm close={this.handleTileModalClose}/>
+        <TileForm close={this.handleTileModalClose} currentDataset={this.state.data}/>
       </Modal>
       {/* Footer */}
       <footer className={classes.footer}>

@@ -51,6 +51,20 @@ class TileForm extends React.Component {
     }
   }
 
+  writeData = (newData) => {
+    let currentDataset = this.props.currentDataset
+    if (currentDataset.section === newData.section) {
+      let newTile = {}
+      newTile.title = newData.title
+      newTile.description = newData.description
+      newTile.permissions = newData.permissions
+      newTile.link = newData.link
+      newTile.resourceType = newData.resourceType
+      currentDataset.tiles.unshift(newTile)
+      console.log(currentDataset)
+    }
+  };
+
   handleChange = event => {
     console.log(event.target.name, event.target.value)
     const name = event.target.name;
@@ -71,6 +85,8 @@ class TileForm extends React.Component {
       alert("All fields are required. Please complete the form.")
     }
     incompleteFields = 0;
+    this.props.close();
+    this.writeData(this.state);
   }
 
    render() {
@@ -97,13 +113,11 @@ class TileForm extends React.Component {
               name="section"
               className={classes.formField}
               placeholder="Make a selection..."
+              input={<Input name="section" id="section-value" inputProps={{ required: true }} />}
             >
-              <MenuItem value="" disabled>
-                Make selection
-              </MenuItem>
-              <MenuItem name="section" value="news">News and Information</MenuItem>
-              <MenuItem name="section" value="ministry">Ministry Resources</MenuItem>
-              <MenuItem name="section" value="dsti">DSTI Apps</MenuItem>
+              <option name="section" value="news">News and Information</option>
+              <option name="section" value="ministry">Ministry Resources</option>
+              <option name="section" value="dsti">DSTI Apps</option>
             </Select>
             <FormHelperText>In which section should this resource appear? Create a category with "Add a section" on the main page.</FormHelperText>
             <TextField
