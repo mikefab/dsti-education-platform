@@ -62,15 +62,19 @@ const styles = theme => ({
   },
 });
 
-function App(props) {
-  const { classes } = props;
+class App extends React.Component {
+  constructor(props) {
+   super(props);
+   this.state = {
+     data: {},
+   };
+ }
 
   componentWillMount() {
     fetch('/data.json')
     .then(res => res.json())
     .then(json => this.setState({ data: json }))
   }
-
 
   render() {
     const { classes } = this.props;
@@ -129,6 +133,7 @@ function App(props) {
       {/* End footer */}
     </React.Fragment>
   );
+}
 }
 
 App.propTypes = {
