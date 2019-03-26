@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import TileForm from './TileForm';
+import SectionForm from './SectionForm';
 import Modal from '@material-ui/core/Modal';
 
 // import Card from '@material-ui/core/Card';
@@ -72,6 +73,7 @@ class App extends React.Component {
    this.state = {
      data: {},
      tileModalOpen: false,
+     sectionModalOpen: false,
    };
  }
 
@@ -87,6 +89,14 @@ class App extends React.Component {
 
   handleTileModalClose = () => {
     this.setState({ tileModalOpen: false });
+  };
+
+  handleSectionModalOpen = () => {
+    this.setState({ sectionModalOpen: true });
+  };
+
+  handleSectionModalClose = () => {
+    this.setState({ sectionModalOpen: false });
   };
 
 
@@ -129,7 +139,7 @@ class App extends React.Component {
                 <GridListTile key="AddSubheader" cols={3} style={{ height: 'auto' }}>
                   <span>
                     <hr></hr>
-                    <ListSubheader component="div" className={classes.addSubheader}>Add A Section + </ListSubheader>
+                    <ListSubheader component="div" className={classes.addSubheader} onClick={this.handleSectionModalOpen}>Add A Section + </ListSubheader>
                     <hr></hr>
                   </span>
                 </GridListTile>
@@ -147,6 +157,15 @@ class App extends React.Component {
           className={classes.modal}
         >
         <TileForm close={this.handleTileModalClose} currentDataset={this.state.data}/>
+      </Modal>
+      <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.sectionModalOpen}
+          onClose={this.handleSectionModalClose}
+          className={classes.modal}
+        >
+        <SectionForm close={this.handleSectionModalClose} currentDataset={this.state.data}/>
       </Modal>
       {/* Footer */}
       <footer className={classes.footer}>
