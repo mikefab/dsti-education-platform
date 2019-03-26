@@ -61,6 +61,9 @@ const styles = theme => ({
     fontColor: '#424242',
     textAlign: 'center',
   },
+  modal:{
+    textAlign:'center',
+  },
 });
 
 class App extends React.Component {

@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -17,14 +18,16 @@ const styles = theme => ({
     padding: '20px',
     backgroundColor: '#f9f9f9',
     fontSize: '14px',
-    marginTop: '20px',
-    marginLeft: '300px',
+    textAlign: 'left',
   },
   formField: {
     marginTop:'10px',
   },
   label: {
     marginTop: '10px',
+  },
+  group: {
+    lineHeight: '.5',
   },
   paper: {
     position: 'absolute',
@@ -56,12 +59,24 @@ class TileForm extends React.Component {
     this.setState({
           [name]: value
     });
-}
+  }
+
+  handleSubmit = event =>  {
+    event.preventDefault();
+    let incompleteFields = 0
+    Object.values(this.state).map(value => (
+      !value ? incompleteFields += 1 : null
+    ));
+    if (incompleteFields > 0 ) {
+      alert("All fields are required. Please complete the form.")
+    }
+    incompleteFields = 0;
+  }
 
    render() {
     const { classes, close } = this.props;
       return (
-        <div className={classes.root}>
+        <form className={classes.root} onSubmit={this.handleSubmit}>
         {console.log(this.state)}
           <FormControl className={classes.formControl}>
           <h2>Add a resource</h2>
@@ -90,7 +105,7 @@ class TileForm extends React.Component {
               <MenuItem name="section" value="ministry">Ministry Resources</MenuItem>
               <MenuItem name="section" value="dsti">DSTI Apps</MenuItem>
             </Select>
-            <FormHelperText>In which section should this resource appear? If you need to create a new category, close this modal and click "Add a section" on the main page.</FormHelperText>
+            <FormHelperText>In which section should this resource appear? Create a category with "Add a section" on the main page.</FormHelperText>
             <TextField
               required
               className={classes.formField}
@@ -107,7 +122,7 @@ class TileForm extends React.Component {
               className={classes.formField}
               id="description-input"
               label="Application Description"
-              name="link"
+              name="description"
               helperText="Provide a very short description of the app here."
               margin="normal"
               value={this.state.description.value}
@@ -120,9 +135,10 @@ class TileForm extends React.Component {
               className={classes.group}
               value={this.state.resourceType.value}
               onChange={this.handleChange}
+              required
             >
-              <FormControlLabel name="resourceType" value="internal" control={<Radio />} label="Internal (DSTI) Application" />
-              <FormControlLabel name="resourceType" value="external" control={<Radio />} label="External Resource" />
+              <FormControlLabel className={classes.formControlLabel} name="resourceType" value="internal" control={<Radio />} label="Internal (DSTI) Application" />
+              <FormControlLabel className={classes.formControlLabel} name="resourceType" value="external" control={<Radio />} label="External Resource" />
             </RadioGroup>
             <FormLabel className={classes.label}>Permissions: Can a logged-in DSTI Admin change this resource?</FormLabel>
             <RadioGroup
@@ -131,14 +147,15 @@ class TileForm extends React.Component {
               className={classes.group}
               value={this.state.resourceType.value}
               onChange={this.handleChange}
+              required
             >
               <FormControlLabel name="permissions" value="can-edit" control={<Radio />} label="Can be edited/deleted" />
               <FormControlLabel name="permissions" value="cannot-edit" control={<Radio />} label="Cannot be edited/deleted" />
             </RadioGroup>
-            <Button>SUBMIT</Button>
+            <input type="submit" />
             <Button onClick={close}>CANCEL</Button>
           </FormControl>
-        </div>
+        </form>
       );
   }
 }
