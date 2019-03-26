@@ -10,30 +10,30 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
-
-
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
   formControl: {
-    margin: theme.spacing.unit * 3,
     padding: '20px',
-  },
-  group: {
-    margin: `${theme.spacing.unit}px 0`,
+    backgroundColor: '#f9f9f9',
+    fontSize: '14px',
+    marginTop: '20px',
+    marginLeft: '300px',
   },
   formField: {
-    marginTop:'40px',
+    marginTop:'10px',
   },
   label: {
-    marginTop: '40px',
+    marginTop: '10px',
   },
-  text: {
-    fontSize: '12px',
-    fontColor: '#f0f0f0'
-  }
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    outline: 'none',
+  },
 });
 
 class TileForm extends React.Component {
@@ -59,14 +59,12 @@ class TileForm extends React.Component {
 }
 
    render() {
-    const { classes } = this.props;
+    const { classes, close } = this.props;
       return (
         <div className={classes.root}>
         {console.log(this.state)}
           <FormControl className={classes.formControl}>
           <h2>Add a resource</h2>
-          <br></br>
-          <h4>Use this form to create a new resource. All fields are required.</h4>
             <TextField
               required
               className={classes.formField}
@@ -104,19 +102,14 @@ class TileForm extends React.Component {
               value={this.state.link.value}
               onChange={this.handleChange}
             />
-            <FormLabel className={classes.label}>App/Resource Description</FormLabel>
             <TextField
               required
               className={classes.formField}
               id="description-input"
-              label="Description"
-              name="description"
-              helperText="Include a short description of the application here."
-              fullWidth
+              label="Application Description"
+              name="link"
+              helperText="Provide a very short description of the app here."
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               value={this.state.description.value}
               onChange={this.handleChange}
             />
@@ -142,6 +135,8 @@ class TileForm extends React.Component {
               <FormControlLabel name="permissions" value="can-edit" control={<Radio />} label="Can be edited/deleted" />
               <FormControlLabel name="permissions" value="cannot-edit" control={<Radio />} label="Cannot be edited/deleted" />
             </RadioGroup>
+            <Button>SUBMIT</Button>
+            <Button onClick={close}>CANCEL</Button>
           </FormControl>
         </div>
       );
