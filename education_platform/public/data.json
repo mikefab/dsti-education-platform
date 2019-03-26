@@ -3,25 +3,25 @@
   "section": "news",
   "tiles": [
     {
-      "title": "Card 1",
-      "description": " This is a demo card",
-      "permissions": ["update", "delete"],
-      "img": "/chart_icon.png",
-      "action": "VISIT"
-    },
-    {
-      "title": "Card 1",
-      "description": " This is a demo card",
-      "permissions": ["update", "delete"],
-      "img": "/chart_icon.png",
-      "action": "VISIT"
-    },
-    {
       "title": "Add",
-      "permissions": [],
+      "permissions": "cannot-edit",
       "description": "Click here to add a card",
       "img": "/add_icon.png",
       "action": "ADD"
+    },
+    {
+      "title": "Card 1",
+      "description": " This is a demo card",
+      "permissions": "can-edit",
+      "img": "/chart_icon.png",
+      "action": "VISIT"
+    },
+    {
+      "title": "Card 1",
+      "description": " This is a demo card",
+      "permissions": "can-edit",
+      "img": "/chart_icon.png",
+      "action": "VISIT"
     }
   ]
 }

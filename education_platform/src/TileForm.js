@@ -60,7 +60,7 @@ class TileForm extends React.Component {
       newTile.permissions = newData.permissions
       newTile.link = newData.link
       newTile.resourceType = newData.resourceType
-      currentDataset.tiles.unshift(newTile)
+      currentDataset.tiles.push(newTile)
       console.log(currentDataset)
     }
   };
