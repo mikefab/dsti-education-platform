@@ -32,9 +32,6 @@ const Header = ({ classes }) => (
     >
       Education Platform
     </Typography>
-    <Button variant="outlined" size="small">
-      Log In
-    </Button>
     <MenuIcon className={classes.menuIcon}/>
   </Toolbar>
 )

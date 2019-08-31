@@ -5,25 +5,36 @@
   "permissions": "can-edit",
   "tiles": [
     {
-      "title": "Add",
-      "permissions": "cannot-edit",
-      "description": "Click here to add a card",
-      "img": "/add_icon.png",
-      "action": "ADD"
+      "id": "school-coverage",
+      "title": "",
+      "description": "",
+      "permissions": "can-edit",
+      "img": "/school-coverage.png",
+      "action": "School coverage"
     },
     {
-      "title": "Card 1",
-      "description": " This is a demo card",
+      "id": "schools-to-bus-stops",
+      "title": "",
+      "description": "",
       "permissions": "can-edit",
-      "img": "/chart_icon.png",
-      "action": "VISIT"
+      "img": "/schools-to-bus-stops.png",
+      "action": "Schools & bus stops"
     },
     {
-      "title": "Card 1",
-      "description": " This is a demo card",
+      "id": "distance-to-schools",
+      "title": "",
+      "description": "",
       "permissions": "can-edit",
-      "img": "/chart_icon.png",
-      "action": "VISIT"
+      "img": "/dist-to-schools.png",
+      "action": "Populations & schools"
+    },
+    {
+      "id": "tower-coverage",
+      "title": "",
+      "description": "",
+      "permissions": "can-edit",
+      "img": "/tower-coverage.png",
+      "action": "Populations & schools"
     }
   ]
 }

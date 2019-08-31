@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from './firebase.js'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +10,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import TileForm from './TileForm';
 import SectionForm from './SectionForm';
+import InfoIcon from '@material-ui/icons/Info';
 import Modal from '@material-ui/core/Modal';
 import Footer from './Footer';
 import Header from './Header';
@@ -64,6 +66,7 @@ class App extends React.Component {
    super(props);
    this.state = {
      data: {},
+     visualizations: [],
      tileModalOpen: false,
      sectionModalOpen: false,
    };
@@ -73,6 +76,14 @@ class App extends React.Component {
     fetch('/data.json')
     .then(res => res.json())
     .then(json => this.setState({ data: json }))
+  }
+
+  componentDidMount() {
+    const visualizationsRef = firebase.database().ref('visualizations')
+    visualizationsRef.on('value', snapshot => {
+      let visualizations = snapshot.val()
+      console.log(visualizations)
+    })
   }
 
   handleTileModalOpen = () => {
@@ -107,66 +118,40 @@ class App extends React.Component {
             <div className={classes.root}>
               <GridList cellHeight={300} className={classes.gridList} cols={3}>
                 <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-                  <ListSubheader component="div" className={classes.Subheader}>Education News and Information</ListSubheader>
+                  <ListSubheader component="div" className={classes.Subheader}>Interactive Visualizations</ListSubheader>
                 </GridListTile>
                 {data.tiles && data.tiles.map((tile, index) => (
                   <GridListTile key={index} className={classes.gridListTile}>
                     { tile.title === "Add" ?
-                      <img src={'./add_icon.png'} alt={tile.title} onClick={this.handleTileModalOpen}/>
+                      <img src={tile.img} alt={tile.title} onClick={this.handleTileModalOpen}/>
                       :
-                      <img src={'./chart_icon.png'} alt={tile.title} />
+                      <img src={tile.img} alt={tile.title} />
                     }
                     <GridListTileBar
-                      title={tile.title}
+                      title={tile.action}
                       subtitle={<span>{tile.description}</span>}
                       actionIcon={
                         <IconButton className={classes.icon}>
-                          {tile.action}
+                          <InfoIcon />
                         </IconButton>
                       }
                       className={classes.tileBar}
                     />
                   </GridListTile>
                 ))}
-                <GridListTile key="AddSubheader" cols={3} style={{ height: 'auto' }}>
-                  <span>
-                    <hr></hr>
-                    <ListSubheader component="div" className={classes.addSubheader} onClick={this.handleSectionModalOpen}>Add A Section + </ListSubheader>
-                    <hr></hr>
-                  </span>
-                </GridListTile>
               ))}
             </GridList>
           </div>
           {/* End sub featured posts */}
         </main>
-      </div>
-      <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.tileModalOpen}
-          onClose={this.handleTileModalClose}
-          className={classes.modal}
-        >
-        <TileForm close={this.handleTileModalClose} currentDataset={this.state.data}/>
-      </Modal>
-      <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.sectionModalOpen}
-          onClose={this.handleSectionModalClose}
-          className={classes.modal}
-        >
-        <SectionForm close={this.handleSectionModalClose} currentDataset={this.state.data}/>
-      </Modal>
-      {/* Footer */}
+
+      </div>      {/* Footer */}
       <footer className={classes.footer}>
         <Footer />
       </footer>
       {/* End footer */}
     </React.Fragment>
-  );
-}
+  )}
 }
 
 App.propTypes = {
