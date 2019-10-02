@@ -1,0 +1,86 @@
+{
+  "sections": [
+    {
+      "name": "visualizations",
+      "tiles": [
+        {
+          "id": "school-coverage",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/school-coverage.png",
+          "action": "School coverage",
+          "app": "http://school-coverage.herokuapp.com"
+        },
+        {
+          "id": "schools-to-bus-stops",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/schools-to-bus-stops.png",
+          "action": "Schools & bus stops",
+          "app": "http://schools-to-bus-stops.herokuapp.com"
+        },
+        {
+          "id": "distance-to-schools",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/dist-to-schools.png",
+          "action": "Populations & schools",
+          "app": "http://distance-to-schools.herokuapp.com"
+        },
+        {
+          "id": "tower-coverage",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/tower-coverage.png",
+          "action": "School connectivity",
+          "app": "http://tower-coverage.herokuapp.com"
+        }
+      ]
+    },
+    {
+      "name": "Dashboards",
+      "tiles": [
+        {
+          "id": "oos-scatter",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/oos-dashboard.png",
+          "action": "Out of school children",
+          "app": "http://35.186.179.96:3000/public/dashboard/5845f663-7b3e-4663-b301-726503c4f3b0"
+        },
+        {
+          "id": "oos-bar",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/oos-dash-superset.png",
+          "action": "Out of school children",
+          "app": "http://35.186.179.96:8088/r/6"
+        },
+        {
+          "id": "school-bus-stops-map",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/school-bus-stops-map.png",
+          "action": "School buses",
+          "app": "http://35.186.179.96:3000/public/dashboard/30855054-7519-4e27-9a95-a29e296f3732"
+        },
+        {
+          "id": "schools-table",
+          "title": "",
+          "description": "",
+          "permissions": "can-edit",
+          "img": "/schools-table.png",
+          "action": "Schools",
+          "app": "http://35.186.179.96:3000/public/dashboard/30855054-7519-4e27-9a95-a29e296f3732"
+        }
+      ]
+    }
+  ]
+}

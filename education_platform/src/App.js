@@ -18,6 +18,7 @@ import Header from './Header';
 
 const styles = theme => ({
   root: {
+
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -26,10 +27,13 @@ const styles = theme => ({
     color: '#ffffff',
   },
   gridList: {
+
     width: 1100,
-    height: 650,
+    height: 850,
   },
   gridListTile: {
+
+    cursor: 'pointer',
     margin: '25px',
     backgroundColor: '#d8d8d8',
     maxWidth: '315px',
@@ -50,15 +54,7 @@ const styles = theme => ({
     fontSize: '20px',
     fontColor: '#424242',
   },
-  addSubheader: {
-    fontSize: '20px',
-    fontColor: '#424242',
-    textAlign: 'center',
-  },
-  modal:{
-    textAlign:'center',
-    outline: 'none',
-  },
+
 });
 
 class App extends React.Component {
@@ -66,81 +62,72 @@ class App extends React.Component {
    super(props);
    this.state = {
      data: {},
-     visualizations: [],
+     sections: [],
      tileModalOpen: false,
      sectionModalOpen: false,
    };
  }
 
-  componentWillMount() {
-    fetch('/data.json')
-    .then(res => res.json())
-    .then(json => this.setState({ data: json }))
-  }
+  // componentWillMount() {
+  //   fetch('/data.json')
+  //   .then(res => res.json())
+  //   .then(json => this.setState({ data: json }))
+  // }
 
   componentDidMount() {
-    const visualizationsRef = firebase.database().ref('visualizations')
-    visualizationsRef.on('value', snapshot => {
-      let visualizations = snapshot.val()
-      console.log(visualizations)
+    const sectionsRef = firebase.database().ref('sections')
+    sectionsRef.on('value', snapshot => {
+      let sections = snapshot.val()
+      this.setState({ sections: sections })
+      console.log(this.state)
     })
   }
 
-  handleTileModalOpen = () => {
-    this.setState({ tileModalOpen: true });
-  };
 
-  handleTileModalClose = () => {
-    this.setState({ tileModalOpen: false });
-  };
+  handleTileClick = appLink => {
+     window.open(appLink, "_blank")
 
-  handleSectionModalOpen = () => {
-    this.setState({ sectionModalOpen: true });
-  };
-
-  handleSectionModalClose = () => {
-    this.setState({ sectionModalOpen: false });
   };
 
 
   render() {
     const { classes } = this.props;
     const { data } = this.state;
-    console.log(data)
-
     return (
       <React.Fragment>
-        <CssBaseline />
-        <div className={classes.layout}>
-          <Header />
-          <main>
-            {/* Sub featured posts */}
-            <div className={classes.root}>
-              <GridList cellHeight={300} className={classes.gridList} cols={3}>
-                <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-                  <ListSubheader component="div" className={classes.Subheader}>Interactive Visualizations</ListSubheader>
+      <CssBaseline />
+      <div className={classes.layout}>
+        <Header />
+        <main>
+          {/* Sub featured posts */}
+          <div className={classes.root}>
+            {this.state.sections.length>0 && this.state.sections.map((section, index) => (
+              <GridList cellHeight={300} className={classes.gridList} cols={1}>
+                <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
+                  <br/>                  <br/>                  <br/>                  <br/>
+                  <ListSubheader component="div" className={classes.Subheader}> {section.name} </ListSubheader>
                 </GridListTile>
-                {data.tiles && data.tiles.map((tile, index) => (
-                  <GridListTile key={index} className={classes.gridListTile}>
-                    { tile.title === "Add" ?
-                      <img src={tile.img} alt={tile.title} onClick={this.handleTileModalOpen}/>
-                      :
+                {this.state.sections.length>0 && section.tiles.map((tile, index) => (
+                  <GridListTile key={index} className={classes.gridListTile} onClick={e => {this.handleTileClick(tile.app)}}>
                       <img src={tile.img} alt={tile.title} />
-                    }
                     <GridListTileBar
                       title={tile.action}
                       subtitle={<span>{tile.description}</span>}
                       actionIcon={
                         <IconButton className={classes.icon}>
-                          <InfoIcon />
+                          <a href='http://www.google.com' target='_blank'>
+                            <InfoIcon />
+                          </a>
                         </IconButton>
                       }
                       className={classes.tileBar}
                     />
+
                   </GridListTile>
+
                 ))}
-              ))}
-            </GridList>
+              </GridList>
+            ))}
           </div>
           {/* End sub featured posts */}
         </main>

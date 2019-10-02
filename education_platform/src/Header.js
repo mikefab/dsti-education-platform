@@ -9,8 +9,7 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   toolbarTitle: {
      flex: 1,
-     textAlign: 'left',
-     padding: '30px',
+     textAlign: 'left'
    },
    toolbarMain: {
      backgroundColor: '#fcfcfc',
@@ -30,7 +29,7 @@ const Header = ({ classes }) => (
       noWrap
       className={classes.toolbarTitle}
     >
-      Education Platform
+    <img src='/cropped-DSTI_Email-Signature-LF-4.png' width='300px'/>
     </Typography>
     <MenuIcon className={classes.menuIcon}/>
   </Toolbar>
