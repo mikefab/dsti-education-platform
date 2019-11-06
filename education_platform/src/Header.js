@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   toolbarTitle: {
@@ -31,7 +30,6 @@ const Header = ({ classes }) => (
     >
     <img src='/cropped-DSTI_Email-Signature-LF-4.png' width='300px'/>
     </Typography>
-    <MenuIcon className={classes.menuIcon}/>
   </Toolbar>
 )
 

@@ -30,6 +30,7 @@ const Footer = ({ classes }) => (
       State House<br></br>
       Call: +232-77-00-00-00<br></br>
       Email: <a href="mailto:info@dsti.gov.sl?subject=Education%20Platform%20Inquiry" style={{ color:'#8e8e8e' }}>info@dsti.gov.sl</a><br></br>
+      This site was developed together with <b><a href='https://www.unicef.org/topics/sierra-leone' style={{ color:'#ffffff' }}>Unicef Sierra Leone</a></b>.<br></br>
       © {(new Date()).getFullYear()} Directorate of Science, Technology, and Innovation
     </p>
     { SocialMediaLinks.map(link => (

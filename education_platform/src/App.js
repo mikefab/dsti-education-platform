@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
+import { Grid } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -14,8 +15,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Modal from '@material-ui/core/Modal';
 import Footer from './Footer';
 import Header from './Header';
-
-
+import Intro from './components/Intro';
 const styles = theme => ({
   root: {
 
@@ -32,7 +32,6 @@ const styles = theme => ({
     height: 850,
   },
   gridListTile: {
-
     cursor: 'pointer',
     margin: '25px',
     backgroundColor: '#d8d8d8',
@@ -54,7 +53,6 @@ const styles = theme => ({
     fontSize: '20px',
     fontColor: '#424242',
   },
-
 });
 
 class App extends React.Component {
@@ -100,7 +98,24 @@ class App extends React.Component {
         <Header />
         <main>
           {/* Sub featured posts */}
+
+          <Grid
+            container
+            spacing={0}
+            align="center"
+            justify="center"
+            direction="column"
+            style={{ color: 'white' }}
+          >
+            <Grid item style={{ backgroundColor: '#fffff' }}>
+              <Intro />
+            </Grid>
+          </Grid>
+
           <div className={classes.root}>
+
+
+
             {this.state.sections.length>0 && this.state.sections.map((section, index) => (
               <GridList cellHeight={300} className={classes.gridList} cols={1}>
                 <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
